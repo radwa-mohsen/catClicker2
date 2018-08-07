@@ -8,30 +8,42 @@ $(function(){
      {
       catName: 'Sofia',
       imgSrc : 'img/catClicker1.jpg',
-      id : 'catName1'
+      id : 'catName1',
+      currentClicks : 0,
+      idNo :0
      },
      {
       catName: 'Lumia',
       imgSrc : 'img/catClicker2.jpg',
-      id : 'catName2'
+      id : 'catName2',
+      currentClicks : 0,
+      idNo :1
      },
      {
       catName: 'Rufia',
       imgSrc : 'img/catClicker3.jpg',
-      id : 'catName3'
+      id : 'catName3',
+      currentClicks : 0,
+      idNo :2
      },
      {
       catName: 'Dunia',
       imgSrc : 'img/catClicker4.jpg',
-      id : 'catName4'
+      id : 'catName4',
+      currentClicks : 0,
+      idNo :3
      },
      {
+
       catName: 'Judia',
       imgSrc : 'img/catClicker5.jpg',
-      id : 'catName5'
+      id : 'catName5',
+      currentClicks : 0,
+      idNo :4
      }
               ],
-    currentCat : null
+    currentCat : null,
+    
     
             };
 
@@ -59,7 +71,21 @@ $(function(){
       getCurrentCat : function () {
         
         return model.currentCat;
+      },
+     
+      getCurrentClicks : function (i) {
+        
+        //return model.cats[i].currentClicks;
+        return model.cats[i].currentClicks;
+      },
+      setCurrentClicks : function function_name(clicks,i) {
+        model.cats[i].currentClicks = clicks;
+      },
+      currentAdminInfo : function (argument) {
+        // body...
       }
+
+
       
     };
    //////////////////////view///////////////////////////
@@ -80,10 +106,9 @@ var viewOfList  = {
        this.list.appendChild(listData);
         this.cat = octopus.catDetails()[i];
       listData.addEventListener('click', (function(catcopy) {
-      
-      var x =0;
-        return function() {
 
+        return function() {
+        octopus.setCurrentClicks(0,catcopy.idNo);
         octopus.setCurrentCat(catcopy);
 
         viewOfCats.init();
@@ -101,10 +126,11 @@ var viewOfList  = {
           this.catNam = document.getElementById('catname');
           this.clickedCat = document.getElementById('image');
           this.clickedCat.addEventListener('click',(function(){
-            
-           var x =  viewOfCats.clicks.textContent;
-           x++
-           viewOfCats.clicks.textContent = x;
+           debugger
+          var i = octopus.getCurrentCat();
+           var x = octopus.getCurrentClicks(i.idNo);
+           viewOfCats.clicks.textContent = ++x;
+           octopus.setCurrentClicks(x,i.idNo);
           }))
 
 
@@ -121,7 +147,20 @@ render: function () {
 
 }
     };
+var admin = {
+  init : function function_name(argument) {
+    var adminButton = document.querySelector('.admin');
+    adminButton.addEventListener('click',function () {
+      return function () {
+        admin.render();
+      }
+    })
+  },
 
+  render : function function_name(argument) {
+    // body...
+  }
+}
      
    octopus.init();
  });
