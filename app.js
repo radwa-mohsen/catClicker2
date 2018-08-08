@@ -162,18 +162,26 @@ render: function () {
     };
 var admin = {
   init : function () {
-    debugger
+    
     var adminButton = document.querySelector('.admin');
-   
+    this.nameInput = document.getElementById('Name');
+    this.urlInput = document.getElementById('imgurl');
+    this.clicksInput = document.getElementById('clicks');
     adminButton.onclick = function () {
-      debugger
+        
         document.querySelector('form').removeAttribute('class');
+
         admin.render();
     }
   },
 
   render : function () {
-    // body...
+debugger
+    
+   this.nameInput.setAttribute('value',octopus.getCurrentCat().catName)
+   this.urlInput.setAttribute('value',octopus.getCurrentCat().imgSrc)
+   this.clicksInput.setAttribute('value',octopus.getCurrentCat().currentClicks)
+
   }
 }
      
