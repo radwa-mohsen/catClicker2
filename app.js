@@ -82,8 +82,10 @@ $(function(){
       setCurrentClicks : function function_name(clicks,i) {
         model.cats[i].currentClicks = clicks;
       },
-      currentAdminInfo : function (argument) {
-        // body...
+      updateCat : function (i,nameCopy,imageCopy,clicksCopy) {
+      model.cats[i].catName = nameCopy;
+      model.cats[i].imgSrc = imageCopy;
+      model.cats[i].currentClicks = clicksCopy;
       }
 
 
@@ -118,6 +120,9 @@ var viewOfList  = {
         };
     })(this.cat));
     }
+  },
+  updatename : function (id,catName) {
+    document.getElementById(id).textContent = catName;
   }
 };
 
@@ -164,6 +169,9 @@ var admin = {
   init : function () {
     
     var adminButton = document.querySelector('.admin');
+     var submitButton = document.getElementById('submit')
+   // var cancelButton = document.getElementById('cancel')
+
     this.nameInput = document.getElementById('Name');
     this.urlInput = document.getElementById('imgurl');
     this.clicksInput = document.getElementById('clicks');
@@ -173,10 +181,32 @@ var admin = {
 
         admin.render();
     }
+   // cancelButton.onclick = function (e) {
+
+   //  e.preventDefault();
+   //  debugger
+   //  admin.nameInput.setAttribute('value','');
+   // admin.urlInput.setAttribute('value','');
+   // admin.clicksInput.setAttribute('value','');
+   // }
+
+submitButton.onclick = function (e) {
+
+    e.preventDefault();
+    debugger
+    var i = octopus.getCurrentCat().idNo;
+    var id = octopus.getCurrentCat().id;
+    var name = admin.nameInput.value;
+   var image = admin.urlInput.value;
+   var clicks = admin.clicksInput.value;
+   octopus.updateCat(i,name,image,clicks);
+    viewOfList.updatename(id,name);
+   }
+
   },
 
   render : function () {
-debugger
+
     
    this.nameInput.setAttribute('value',octopus.getCurrentCat().catName)
    this.urlInput.setAttribute('value',octopus.getCurrentCat().imgSrc)
