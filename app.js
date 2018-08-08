@@ -170,7 +170,7 @@ var admin = {
     
     var adminButton = document.querySelector('.admin');
      var submitButton = document.getElementById('submit')
-   // var cancelButton = document.getElementById('cancel')
+   var cancelButton = document.getElementById('cancel')
 
     this.nameInput = document.getElementById('Name');
     this.urlInput = document.getElementById('imgurl');
@@ -181,14 +181,13 @@ var admin = {
 
         admin.render();
     }
-   // cancelButton.onclick = function (e) {
+   cancelButton.onclick = function (e) {
 
-   //  e.preventDefault();
-   //  debugger
-   //  admin.nameInput.setAttribute('value','');
-   // admin.urlInput.setAttribute('value','');
-   // admin.clicksInput.setAttribute('value','');
-   // }
+    e.preventDefault();
+    
+    document.querySelector('form').setAttribute('class','hidden');
+  
+   }
 
 submitButton.onclick = function (e) {
 
